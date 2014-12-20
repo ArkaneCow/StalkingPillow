@@ -2,10 +2,8 @@
 
 MainScreen::MainScreen(QWidget *parent) :
     QWidget(parent)
-{   
-#ifdef Q_OS_ANDROID || Q_OS_IOS
+{
     this->setWindowState(Qt::WindowMaximized);
-#endif
     this->layout = new QVBoxLayout();
     this->ms = new MonitorScreen();
     this->rs = new RosterScreen();

@@ -68,6 +68,10 @@ SettingsScreen::SettingsScreen(QWidget *parent) :
     } else {
         this->messageField->setText("%USER% is online!");
     }
+    for (int i = 0; i < this->layout->count(); i++) {
+        QWidget* w = this->layout->itemAt(i)->widget();
+        w->setMinimumWidth(this->width());
+    }
 }
 
 void SettingsScreen::saveData() {

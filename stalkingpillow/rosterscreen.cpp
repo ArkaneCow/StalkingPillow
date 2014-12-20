@@ -18,6 +18,10 @@ void RosterScreen::addUser(QString userID) {
         b->setText(userID);
         this->layout->addWidget(b);
         this->pointerMap.insert(userID, b);
+        for (int i = 0; i < this->layout->count(); i++) {
+            QWidget* w = this->layout->itemAt(i)->widget();
+            w->setMinimumWidth(this->width());
+        }
     }
 }
 void RosterScreen::removeUser(QString userID) {
@@ -27,5 +31,9 @@ void RosterScreen::removeUser(QString userID) {
         this->layout->removeWidget(p);
         delete p;
         this->pointerMap.remove(userID);
+        for (int i = 0; i < this->layout->count(); i++) {
+            QWidget* w = this->layout->itemAt(i)->widget();
+            w->setMinimumWidth(this->width());
+        }
     }
 }
