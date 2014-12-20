@@ -1,11 +1,16 @@
 #include "xmppclient.h"
 
-xmppClient::xmppClient(QObject *parent)
+xmppClient::xmppClient(MonitorScreen* ms, RosterScreen* rs, QObject *parent)
     : QXmppClient(parent)
 {
+    this->ms = ms;
+    this->rs = rs;
     connect(this, SIGNAL(connected()), SLOT(clientConnected()));
     connect(&this->rosterManager(), SIGNAL(rosterReceived()), SLOT(rosterReceived()));
     connect(&this->rosterManager(), SIGNAL(presenceChanged(QString,QString)), SLOT(presenceChanged(QString,QString)));
+    for (int i = 0; i < 100; i++) {
+        this->rs->addUser(QString(i));
+    }
 }
 
 void xmppClient::clientConnected()

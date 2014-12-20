@@ -31,6 +31,11 @@ INCLUDEPATH += \
     /Users/jwpilly/Documents/QtProjects/qxmpp-master/src/base \
     /Users/jwpilly/Documents/QtProjects/qxmpp-master/src/client
 }
+android {
+INCLUDEPATH += \
+    /Users/jwpilly/Documents/QtProjects/qxmpp-master/src/base \
+    /Users/jwpilly/Documents/QtProjects/qxmpp-master/src/client
+}
 unix {
 INCLUDEPATH += \
     /home/jwpilly/Git/qxmpp/src/base \

@@ -3,6 +3,11 @@
 SettingsScreen::SettingsScreen(QWidget *parent) :
     QWidget(parent)
 {
+    this->mainLayout = new QVBoxLayout(this);
+    this->scroll = new QScrollArea();
+    this->mainLayout->addWidget(this->scroll);
+    QWidget* contents = new QWidget();
+    this->layout = new QVBoxLayout(contents);
     QSettings settings;
 
     this->titleLabel = new QLabel(this);
@@ -29,8 +34,6 @@ SettingsScreen::SettingsScreen(QWidget *parent) :
     this->saveButton->setText("Save");
     connect(this->saveButton, SIGNAL(released()), this, SLOT(saveData()));
 
-    this->layout = new QVBoxLayout();
-    this->layout->setContentsMargins(QMargins(0,0,0,0));
     this->layout->addWidget(this->titleLabel);
     this->layout->addWidget(this->facebookLabel);
     this->layout->addWidget(this->userLabel);
@@ -43,7 +46,8 @@ SettingsScreen::SettingsScreen(QWidget *parent) :
     this->layout->addWidget(this->messageField);
     this->layout->addWidget(this->saveButton);
 
-    this->setLayout(this->layout);
+    this->layout->setSizeConstraint(QLayout::SetMinimumSize);
+    this->scroll->setWidget(contents);
 
     if (settings.contains("facebook/username")) {
         this->userField->setText(settings.value("facebook/username").toString());
@@ -64,7 +68,6 @@ SettingsScreen::SettingsScreen(QWidget *parent) :
     } else {
         this->messageField->setText("%USER% is online!");
     }
-    this->show();
 }
 
 void SettingsScreen::saveData() {

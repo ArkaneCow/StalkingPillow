@@ -8,6 +8,7 @@
 #include <QLabel>
 #include <QCheckBox>
 #include <QVBoxLayout>
+#include <QScrollArea>
 
 class SettingsScreen : public QWidget
 {
@@ -16,6 +17,8 @@ public:
     explicit SettingsScreen(QWidget *parent = 0);
     ~SettingsScreen();
 private:
+    QScrollArea* scroll;
+    QVBoxLayout* mainLayout;
     QVBoxLayout* layout;
     QLabel* titleLabel;
     QLabel* facebookLabel;

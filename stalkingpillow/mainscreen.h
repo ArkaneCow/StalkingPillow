@@ -8,6 +8,7 @@
 #include "monitorscreen.h"
 #include "rosterscreen.h"
 #include "settingsscreen.h"
+#include "xmppclient.h"
 
 class MainScreen : public QWidget
 {
@@ -21,6 +22,7 @@ private:
     MonitorScreen* ms;
     RosterScreen* rs;
     SettingsScreen* ss;
+    xmppClient* xmpp;
 signals:
 
 public slots:

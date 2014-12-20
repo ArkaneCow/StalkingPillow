@@ -1,7 +1,6 @@
 #include <QApplication>
 
 #include "mainscreen.h"
-#include "xmppclient.h"
 
 int main(int argc, char *argv[])
 {

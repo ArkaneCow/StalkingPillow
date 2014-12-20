@@ -10,6 +10,7 @@ MainScreen::MainScreen(QWidget *parent) :
     this->ms = new MonitorScreen();
     this->rs = new RosterScreen();
     this->ss = new SettingsScreen();
+    this->xmpp = new xmppClient(this->ms, this->rs);
     this->tabs = new QTabWidget();
     this->layout->addWidget(this->tabs);
     this->tabs->addTab(this->ms, "Monitor");
