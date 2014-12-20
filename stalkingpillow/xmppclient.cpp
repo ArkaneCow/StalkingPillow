@@ -8,9 +8,6 @@ xmppClient::xmppClient(MonitorScreen* ms, RosterScreen* rs, QObject *parent)
     connect(this, SIGNAL(connected()), SLOT(clientConnected()));
     connect(&this->rosterManager(), SIGNAL(rosterReceived()), SLOT(rosterReceived()));
     connect(&this->rosterManager(), SIGNAL(presenceChanged(QString,QString)), SLOT(presenceChanged(QString,QString)));
-    for (int i = 0; i < 100; i++) {
-        this->rs->addUser(qPrintable(i));
-    }
 }
 
 void xmppClient::clientConnected()
@@ -26,6 +23,7 @@ void xmppClient::rosterReceived()
         if(name.isEmpty())
             name = "-";
         qDebug("%s [%s]", qPrintable(bareJid), qPrintable(name));
+        this->rs->addUser(name);
     }
 }
 
