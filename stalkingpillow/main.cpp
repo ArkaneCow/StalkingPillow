@@ -1,13 +1,13 @@
 #include <QApplication>
 
-#include "mainscreen.h"
+#include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     QApplication::setOrganizationName("PillowSoft");
     QApplication::setApplicationName("PillowStalk");
-    MainScreen ms;
-    ms.show();
+    MainWindow mw;
+    mw.show();
     return a.exec();
 }

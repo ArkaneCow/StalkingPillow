@@ -17,14 +17,16 @@ SOURCES += main.cpp\
     settingsscreen.cpp \
     monitorscreen.cpp \
     mainscreen.cpp \
-    xmppclient.cpp
+    xmppclient.cpp \
+    mainwindow.cpp
 
 HEADERS  += \
     rosterscreen.h \
     settingsscreen.h \
     monitorscreen.h \
     mainscreen.h \
-    xmppclient.h
+    xmppclient.h \
+    mainwindow.h
 
 win32 {
 INCLUDEPATH += \
@@ -49,7 +51,8 @@ unix {
     LIBS += -L/home/jwpilly/Git/qxmpp/src/
 }
 android {
-    LIBS += -L/Users/jwpilly/Documents/QtProjects/build-qxmpp-Android_for_armeabi_v7a_GCC_4_9_Qt_5_3_0-Release/src
+
+    #LIBS += -L/Users/jwpilly/Documents/QtProjects/build-qxmpp-Android_for_armeabi_v7a_GCC_4_9_Qt_5_3_0-Release/src
 }
 
 win32 {

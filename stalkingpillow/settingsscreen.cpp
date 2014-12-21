@@ -32,7 +32,7 @@ SettingsScreen::SettingsScreen(QWidget *parent) :
 
     this->saveButton = new QPushButton(this);
     this->saveButton->setText("Save");
-    connect(this->saveButton, SIGNAL(released()), this, SLOT(saveData()));
+    connect(this->saveButton, SIGNAL(clicked()), this, SLOT(saveData()));
 
     this->layout->addWidget(this->titleLabel);
     this->layout->addWidget(this->facebookLabel);
@@ -70,7 +70,7 @@ SettingsScreen::SettingsScreen(QWidget *parent) :
     }
     for (int i = 0; i < this->layout->count(); i++) {
         QWidget* w = this->layout->itemAt(i)->widget();
-        w->setMinimumWidth(this->width());
+        w->setMinimumWidth(this->parentWidget()->width());
     }
 }
 
@@ -80,18 +80,4 @@ void SettingsScreen::saveData() {
     settings.setValue("facebook/password", this->passField->text());
     settings.setValue("notification/notify", this->notificationCheck->isChecked());
     settings.setValue("notification/message", this->messageField->text());
-}
-
-SettingsScreen::~SettingsScreen() {
-    delete this->titleLabel;
-    delete this->facebookLabel;
-    delete this->userLabel;
-    delete this->userField;
-    delete this->passLabel;
-    delete this->passField;
-    delete this->notificationLabel;
-    delete this->notificationCheck;
-    delete this->messageLabel;
-    delete this->messageField;
-    delete this->saveButton;
 }

@@ -3,11 +3,13 @@
 MainScreen::MainScreen(QWidget *parent) :
     QWidget(parent)
 {
+#ifdef Q_OS_ANDROID || Q_OS_IOS
     this->setWindowState(Qt::WindowMaximized);
+#endif
     this->layout = new QVBoxLayout();
-    this->ms = new MonitorScreen();
-    this->rs = new RosterScreen();
-    this->ss = new SettingsScreen();
+    this->ms = new MonitorScreen(this);
+    this->rs = new RosterScreen(this);
+    this->ss = new SettingsScreen(this);
     this->xmpp = new xmppClient(this->ms, this->rs);
     this->tabs = new QTabWidget();
     this->layout->addWidget(this->tabs);
@@ -18,5 +20,6 @@ MainScreen::MainScreen(QWidget *parent) :
     if (!settings.contains("facebook/username") || !settings.contains("facebook/password")) {
         this->tabs->setCurrentIndex(this->tabs->indexOf(this->ss));
     }
+    this->xmpp->connectToServer(settings.value("facebook/username").toString(), settings.value("facebook/password").toString());
     this->setLayout(this->layout);
 }

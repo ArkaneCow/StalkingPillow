@@ -22,8 +22,7 @@ void xmppClient::rosterReceived()
         QString name = rosterManager().getRosterEntry(bareJid).name();
         if(name.isEmpty())
             name = "-";
-        qDebug("%s [%s]", qPrintable(bareJid), qPrintable(name));
-        this->rs->addUser(name);
+        this->rs->addUser(bareJid, name);
     }
 }
 

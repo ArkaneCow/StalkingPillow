@@ -15,7 +15,6 @@ class SettingsScreen : public QWidget
     Q_OBJECT
 public:
     explicit SettingsScreen(QWidget *parent = 0);
-    ~SettingsScreen();
 private:
     QScrollArea* scroll;
     QVBoxLayout* mainLayout;
