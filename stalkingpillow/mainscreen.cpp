@@ -8,7 +8,7 @@ MainScreen::MainScreen(QWidget *parent) :
 #endif
     this->layout = new QVBoxLayout();
     this->ms = new MonitorScreen(this);
-    this->rs = new RosterScreen(this);
+    this->rs = new RosterScreen(ms, this);
     this->ss = new SettingsScreen(this);
     this->xmpp = new xmppClient(this->ms, this->rs);
     this->tabs = new QTabWidget();

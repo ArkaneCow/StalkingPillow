@@ -51,8 +51,7 @@ unix {
     LIBS += -L/home/jwpilly/Git/qxmpp/src/
 }
 android {
-
-    #LIBS += -L/Users/jwpilly/Documents/QtProjects/build-qxmpp-Android_for_armeabi_v7a_GCC_4_9_Qt_5_3_0-Release/src
+    LIBS += -L/Users/jwpilly/Documents/QtProjects/build-qxmpp-Android_for_armeabi_v7a_GCC_4_9_Qt_5_3_0-Release/src
 }
 
 win32 {

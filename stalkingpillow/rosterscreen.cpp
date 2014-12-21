@@ -1,8 +1,9 @@
 #include "rosterscreen.h"
 
-RosterScreen::RosterScreen(QWidget *parent) :
+RosterScreen::RosterScreen(MonitorScreen* ms, QWidget *parent) :
     QWidget(parent)
 {
+    this->ms = ms;
     this->mainLayout = new QVBoxLayout(this);
     this->scroll = new QScrollArea();
     this->mainLayout->addWidget(this->scroll);
@@ -52,9 +53,13 @@ void RosterScreen::monitorUser(QString userData) {
     if (settings.contains("facebook/monitor")) {
         old += settings.value("facebook/monitor").toString();
     }
+    QStringList userDataSplit = userData.split("|");
+    QString userID = userDataSplit.at(0);
+    QString userName = userDataSplit.at(1);
     QStringList data = old.split(",");
     if (!data.contains(userData)) {
         QString newList = old + userData + ",";
         settings.setValue("facebook/monitor", newList);
+        this->ms->addUser(userID, userName);
     }
 }

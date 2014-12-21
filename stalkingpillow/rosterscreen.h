@@ -9,11 +9,13 @@
 #include <QSettings>
 #include <QSignalMapper>
 
+#include "monitorscreen.h"
+
 class RosterScreen : public QWidget
 {
     Q_OBJECT
 public:
-    explicit RosterScreen(QWidget *parent = 0);
+    explicit RosterScreen(MonitorScreen* ms, QWidget *parent = 0);
     void addUser(QString userID, QString userName);
     void removeUser(QString userID);
 private:
@@ -23,6 +25,8 @@ private:
     QMap<QString, QPushButton*> pointerMap;
     QMap<QString, QString> jabberMap;
     QSignalMapper* signalMap;
+
+    MonitorScreen* ms;
 signals:
 
 public slots:
