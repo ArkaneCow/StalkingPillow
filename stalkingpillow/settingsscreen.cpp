@@ -1,8 +1,9 @@
 #include "settingsscreen.h"
 
-SettingsScreen::SettingsScreen(QWidget *parent) :
+SettingsScreen::SettingsScreen(xmppClient* xmpp, QWidget *parent) :
     QWidget(parent)
 {
+    this->xmpp = xmpp;
     this->mainLayout = new QVBoxLayout(this);
     this->scroll = new QScrollArea();
     this->mainLayout->addWidget(this->scroll);
@@ -80,4 +81,8 @@ void SettingsScreen::saveData() {
     settings.setValue("facebook/password", this->passField->text());
     settings.setValue("notification/notify", this->notificationCheck->isChecked());
     settings.setValue("notification/message", this->messageField->text());
+    if (this->xmpp->isConnected()) {
+        this->xmpp->disconnectFromServer();
+    }
+    this->xmpp->connectToServer(settings.value("facebook/username").toString(), settings.value("facebook/password").toString());
 }

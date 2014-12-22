@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network xml
+QT       += core gui network xml androidextras
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     monitorscreen.cpp \
     mainscreen.cpp \
     xmppclient.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    notificationclient.cpp
 
 HEADERS  += \
     rosterscreen.h \
@@ -26,7 +27,8 @@ HEADERS  += \
     monitorscreen.h \
     mainscreen.h \
     xmppclient.h \
-    mainwindow.h
+    mainwindow.h \
+    notificationclient.h
 
 win32 {
 INCLUDEPATH += \
@@ -47,17 +49,18 @@ INCLUDEPATH += \
 win32 {
     LIBS += -L/Users/jwpilly/Documents/QtProjects/build-qxmpp-Desktop_Qt_5_3_0_MinGW_32bit-Release/src
 }
-unix {
+linux {
     LIBS += -L/home/jwpilly/Git/qxmpp/src/
 }
 android {
-    LIBS += -L/Users/jwpilly/Documents/QtProjects/build-qxmpp-Android_for_armeabi_v7a_GCC_4_9_Qt_5_3_0-Release/src
+    LIBS += -L/home/jwpilly/Git/build-qxmpp-Android_for_x86_GCC_4_9_Qt_5_4_0-Release/src
+    #LIBS += -L/Users/jwpilly/Documents/QtProjects/build-qxmpp-Android_for_armeabi_v7a_GCC_4_9_Qt_5_3_0-Release/src
 }
 
 win32 {
     LIBS += -lqxmpp0
 }
-unix {
+linux {
     LIBS += -lqxmpp
 }
 android {
@@ -66,4 +69,10 @@ android {
 
 CONFIG += mobility
 MOBILITY = 
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+
+OTHER_FILES += \
+    android/AndroidManifest.xml \
+    android/src/com/PillowSoft/PillowStalk/NotificationClient.java
 

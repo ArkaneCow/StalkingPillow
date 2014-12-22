@@ -10,11 +10,13 @@
 #include <QVBoxLayout>
 #include <QScrollArea>
 
+#include "xmppclient.h"
+
 class SettingsScreen : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SettingsScreen(QWidget *parent = 0);
+    explicit SettingsScreen(xmppClient* xmpp, QWidget *parent = 0);
 private:
     QScrollArea* scroll;
     QVBoxLayout* mainLayout;
@@ -31,6 +33,7 @@ private:
     QLineEdit* messageField;
     QPushButton* saveButton;
 
+    xmppClient* xmpp;
     //add timer interval
 signals:
 

@@ -16,12 +16,12 @@ public:
     explicit MonitorScreen(QWidget *parent = 0);
     void addUser(QString userID, QString userName);
     void removeUser(QString userID);
+    QMap<QString, QPushButton*> pointerMap;
+    QMap<QString, QString> jabberMap;
 private:
     QVBoxLayout* mainLayout;
     QVBoxLayout* layout;
     QScrollArea* scroll;
-    QMap<QString, QPushButton*> pointerMap;
-    QMap<QString, QString> jabberMap;
     QSignalMapper* signalMap;
 signals:
 

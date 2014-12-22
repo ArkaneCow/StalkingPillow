@@ -7,6 +7,7 @@
 
 #include "monitorscreen.h"
 #include "rosterscreen.h"
+#include "notificationclient.h"
 
 class xmppClient : public QXmppClient
 {
@@ -17,6 +18,7 @@ public:
 private:
     MonitorScreen* ms;
     RosterScreen* rs;
+    NotificationClient* nc;
 public slots:
     void clientConnected();
     void rosterReceived();

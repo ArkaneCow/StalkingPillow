@@ -15,10 +15,10 @@ MonitorScreen::MonitorScreen(QWidget *parent) :
     QString monitorList = settings.value("facebook/monitor").toString();
     QStringList data = monitorList.split(",");
     for (int i = 0; i < data.size(); i++) {
-        if (!data.at(i).isEmpty()) {
+        if (data.at(i).contains("|")) {
             QStringList userData = data.at(i).split("|");
-            QString userID = userData.at(i);
-            QString userName = userData.at(i);
+            QString userID = userData.at(0);
+            QString userName = userData.at(1);
             this->addUser(userID, userName);
         }
     }
