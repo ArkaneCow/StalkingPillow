@@ -46,10 +46,6 @@ public class NotificationClient extends org.qtproject.qt5.android.bindings.QtAct
   public NotificationClient()
   {
     m_instance = this;
-    m_notificationManager = (NotificationManager)m_instance.getSystemService(Context.NOTIFICATION_SERVICE);
-    m_builder = new Notification.Builder(m_instance);
-    m_builder.setSmallIcon(R.drawable.icon);
-    m_builder.setContentTitle("PillowStalk");
   }
 
   public static void notify(String s)

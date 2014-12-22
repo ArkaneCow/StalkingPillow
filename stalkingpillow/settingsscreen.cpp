@@ -67,7 +67,7 @@ SettingsScreen::SettingsScreen(xmppClient* xmpp, QWidget *parent) :
     if (settings.contains("notification/message")) {
         this->messageField->setText(settings.value("notification/message").toString());
     } else {
-        this->messageField->setText("%USER% is online!");
+        this->messageField->setText("%USER% is %STATUS%!");
     }
     for (int i = 0; i < this->layout->count(); i++) {
         QWidget* w = this->layout->itemAt(i)->widget();

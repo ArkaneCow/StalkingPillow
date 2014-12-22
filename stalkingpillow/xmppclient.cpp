@@ -13,7 +13,7 @@ xmppClient::xmppClient(MonitorScreen* ms, RosterScreen* rs, QObject *parent)
 
 void xmppClient::clientConnected()
 {
-    this->nc->setNotification("new connected");
+    this->nc->setNotification("XMPP Connected");
 }
 
 void xmppClient::rosterReceived()
@@ -53,6 +53,8 @@ void xmppClient::presenceChanged(const QString& bareJid, const QString& resource
     QString monitorList = settings.value("facebook/monitor").toString();
     QStringList monitor = monitorList.split(",");
 
+    QString notifString = settings.value("notification/message").toString();
+    bool notif = settings.value("notification/notify").toBool();
     for (int i = 0; i < monitor.size(); i++) {
         if (monitor.at(i).contains("|")) {
             QStringList splitName = monitor.at(i).split("|");
@@ -62,10 +64,21 @@ void xmppClient::presenceChanged(const QString& bareJid, const QString& resource
                 QXmppPresence& pre = presences[resource];
                 QPushButton* b = this->ms->pointerMap.value(bareJid);
                 QString name = this->ms->jabberMap.value(bareJid);
+
                 if (pre.type() == QXmppPresence::Chat || pre.type() == QXmppPresence::Online || pre.type() == QXmppPresence::Available) {
                     b->setText(name + " - " + "Online");
+                    if (notif) {
+                        if (notifString.contains("%USER%") && notifString.contains("%STATUS%")) {
+                            this->nc->setNotification(notifString.replace("%USER%", name).replace("%STATUS%", "online"));
+                        }
+                    }
                 } else if (pre.type() == QXmppPresence::Away || pre.type() == QXmppPresence::Unavailable){
                     b->setText(name + " - " + "Offline");
+                    if (notif) {
+                        if (notifString.contains("%USER%") && notifString.contains("%STATUS%")) {
+                            this->nc->setNotification(notifString.replace("%USER%", name).replace("%STATUS%", "offline"));
+                        }
+                    }
                 }
             }
         }
